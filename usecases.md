@@ -1,0 +1,6 @@
+- Planifier un rendez-vous medical
+- Creer un dossier patient
+    - 
+- Consulter un dossier patient
+- Mettre a jour un dossier patient
+- Discuter entre professionnel de sante
