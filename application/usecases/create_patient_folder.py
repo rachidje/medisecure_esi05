@@ -8,6 +8,7 @@ from domain.exceptions.missing_patient_consent_exception import MissingPatientCo
 from domain.exceptions.missing_required_field import MissingRequiredField
 from domain.exceptions.patient_already_exist_exception import PatientAlreadyExistException
 from domain.ports.secondary.patient_repository_interface import PatientRepositoryInterface
+from domain.services.patient_service import PatientService
 
 class PatientDataPayload(TypedDict):
     firstname: str
@@ -34,9 +35,6 @@ class CreatePatientFolderUsecase:
         except ValidationError as e:
             raise MissingRequiredField(f"Missing required: {e.errors()[0]['loc'][0]}")
         
-        if patient.is_minor() and not patient.guardian_consent:
-            raise MissingGuardianConsentException()
-        
-        if not patient.consent:
-            raise MissingPatientConsentException()
+        PatientService.validate_guardian_consent(patient)
+        PatientService.validate_patient_consent(patient)
         
