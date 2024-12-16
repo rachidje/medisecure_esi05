@@ -7,7 +7,7 @@ from domain.exceptions.missing_guardian_consent_exception import MissingGuardian
 from domain.exceptions.missing_patient_consent_exception import MissingPatientConsentException
 from domain.exceptions.missing_required_field import MissingRequiredField
 from domain.exceptions.patient_already_exist_exception import PatientAlreadyExistException
-from infrastructure.adapters.secondary.in_memory_patient_repository import InMemoryPatientRepository
+from domain.ports.secondary.patient_repository_interface import PatientRepositoryInterface
 
 class PatientDataPayload(TypedDict):
     firstname: str
@@ -21,7 +21,7 @@ class PatientDataPayload(TypedDict):
     guardian_consent: NotRequired[bool]
 
 class CreatePatientFolderUsecase:
-    def __init__(self, repository: InMemoryPatientRepository):
+    def __init__(self, repository: PatientRepositoryInterface):
         self.repository = repository
 
     def execute(self, patient_data: PatientDataPayload):
