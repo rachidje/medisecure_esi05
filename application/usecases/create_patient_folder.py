@@ -3,8 +3,6 @@ from typing import NotRequired, TypedDict
 
 from pydantic import ValidationError
 from domain.entities.patient import Patient
-from domain.exceptions.missing_guardian_consent_exception import MissingGuardianConsentException
-from domain.exceptions.missing_patient_consent_exception import MissingPatientConsentException
 from domain.exceptions.missing_required_field import MissingRequiredField
 from domain.exceptions.patient_already_exist_exception import PatientAlreadyExistException
 from domain.ports.secondary.patient_repository_interface import PatientRepositoryInterface
