@@ -83,5 +83,20 @@ class TestCreatePatientFolderUsecase:
                 "guardian_consent": False
             })
 
+    def test_should_create_patient_folder(self):
+        self.usecase.execute({
+                "firstname" : "John",
+                "lastname" : "Doe",
+                "email": "johndoe@gmail.com",
+                "date_of_birth": date(1979, 1, 1),
+                "sex": "M",
+                "address": "25 rue de la paix",
+                "phone_number": "0601020304",
+                "consent": True,
+            })
+        
+        fetched_patient = self.repository.find_by_email("johndoe@gmail.com")
+        assert fetched_patient is not None
+
     # def test_should_return_id(self):
     #     ...

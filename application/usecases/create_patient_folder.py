@@ -35,4 +35,6 @@ class CreatePatientFolderUsecase:
         
         PatientService.validate_guardian_consent(patient)
         PatientService.validate_patient_consent(patient)
+
+        self.repository.create(patient)
         
